@@ -265,15 +265,6 @@ class UnorderedList:
         else:
             previous.setNext(current.getNext())
 
-    def __str__(self):
-        list_str = "head"
-        current = self.head
-        while current != None:
-            list_str = list_str + "->" + str(current.getData())
-            current = current.getNext()
-        list_str = list_str + "->" + str(None)
-        return list_str
-
     def append(self, item):
         """add items into the linked from the other direction compared to add()"""
         current = self.head
@@ -309,8 +300,12 @@ class UnorderedList:
         else:
             raise ("index out of range")
 
-    def pop(self, index):
-        self.remove(self.getItem(index))
+    def pop(self, index=""):
+        if index =="":
+            index = self.size()-1
+        item = self.getItem(index)
+        self.remove(item)
+        return item
 
     def insert(self, index, item):
         """insert an item after index item"""
